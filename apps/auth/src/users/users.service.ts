@@ -32,7 +32,7 @@ export class UsersService {
   update(id: string, updateUserDto: UpdateUserDto): User {
     const index = this.users.findIndex((user) => user.id === id);
 
-    if (index === -1) {
+    if (index !== -1) {
       this.users[index] = {
         ...this.users[index],
         ...updateUserDto,
