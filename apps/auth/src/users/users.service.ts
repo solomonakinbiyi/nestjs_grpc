@@ -1,8 +1,14 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateUserDto, UpdateUserDto } from '@app/common';
+import {
+  CreateUserDto,
+  UpdateUserDto,
+  LoginUserDto,
+  LoginUserResponse,
+} from '@app/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/User';
 import { Repository } from 'typeorm';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
@@ -16,6 +22,7 @@ export class UsersService {
 
   constructor(
     @InjectRepository(User) private userRepository: Repository<User>,
+    private jwtService: JwtService,
   ) {}
 
   create(createUserDto: CreateUserDto): Promise<User> {
@@ -54,5 +61,27 @@ export class UsersService {
 
   remove(id: string) {
     return this.userRepository.delete(id);
+  }
+
+  async loginUser(loginUserDto: LoginUserDto): Promise<LoginUserResponse> {
+    if (!loginUserDto.username || !loginUserDto.password) {
+      throw new Error('Username and password are required');
+    }
+
+    const userExists = await this.userRepository.findOneBy({
+      username: loginUserDto.username,
+      password: loginUserDto.password,
+    });
+
+    if (!userExists) {
+      throw new NotFoundException('Invalid credentials');
+    }
+
+    const token = this.jwtService.sign({ id: userExists.id });
+
+    return {
+      username: userExists.username,
+      token,
+    };
   }
 }
