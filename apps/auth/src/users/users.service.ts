@@ -53,12 +53,6 @@ export class UsersService {
   }
 
   remove(id: string) {
-    const index = this.users.findIndex((user) => user.id === id);
-
-    if (index !== -1) {
-      return this.users.splice(index)[0];
-    }
-
-    throw new NotFoundException(`User with id "${id}" not found`);
+    return this.userRepository.delete(id);
   }
 }

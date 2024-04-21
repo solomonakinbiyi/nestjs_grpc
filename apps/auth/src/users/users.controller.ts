@@ -30,7 +30,9 @@ export class UsersController implements UserServiceController {
   updateUser(request: UpdateUserDto): User | Promise<User> | Observable<User> {
     return this.usersService.update(request.id, request);
   }
-  removeUser(request: FindOneUserDto): User | Promise<User> | Observable<User> {
-    return this.usersService.remove(request.id);
+  async removeUser(request: FindOneUserDto): Promise<User> {
+    const user = await this.usersService.findOne(request.id);
+    await this.usersService.remove(request.id);
+    return user;
   }
 }
