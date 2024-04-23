@@ -77,7 +77,10 @@ export class UsersService {
       throw new NotFoundException('Invalid credentials');
     }
 
-    const token = this.jwtService.sign({ id: userExists.id });
+    const token = this.jwtService.sign({
+      id: userExists.id,
+      username: userExists.username,
+    });
 
     return {
       username: userExists.username,

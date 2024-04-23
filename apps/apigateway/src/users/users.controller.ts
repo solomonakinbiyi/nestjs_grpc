@@ -7,10 +7,13 @@ import {
   Param,
   Delete,
   UseGuards,
+  Req,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto, UpdateUserDto, LoginUserDto } from '@app/common';
 import { LocalGuard } from './guards/local.guards';
+import { Request } from 'express';
+import { JwtAuthGuard } from './guards/jwt.guards';
 
 @Controller('users')
 export class UsersController {
@@ -45,5 +48,11 @@ export class UsersController {
   @Post('login')
   login(@Body() loginUserDto: LoginUserDto) {
     return this.usersService.loginUser(loginUserDto);
+  }
+
+  @Post('status')
+  @UseGuards(JwtAuthGuard) // For protected endpoints. jwt token must be provided in auth headers
+  status(@Req() req: Request) {
+    return req.user;
   }
 }

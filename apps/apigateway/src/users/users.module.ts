@@ -7,6 +7,8 @@ import { AUTH_PACKAGE_NAME } from '@app/common';
 import { join } from 'path';
 import { LocalStrategy } from './strategies/local.strategy';
 import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './strategies/jwt.strategy';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
@@ -21,8 +23,12 @@ import { PassportModule } from '@nestjs/passport';
       },
     ]),
     PassportModule,
+    JwtModule.register({
+      secret: 'secretKey',
+      signOptions: { expiresIn: '1h' },
+    }),
   ],
   controllers: [UsersController],
-  providers: [UsersService, LocalStrategy],
+  providers: [UsersService, LocalStrategy, JwtStrategy],
 })
 export class UsersModule {}
