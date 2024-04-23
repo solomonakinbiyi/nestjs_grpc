@@ -6,12 +6,13 @@ import {
   WalletServiceClient,
 } from '@app/common/types/wallet';
 import { ClientGrpc } from '@nestjs/microservices';
+import { WALLET_SERVICE } from './constants';
 
 @Injectable()
 export class WalletService {
   private walletService: WalletServiceClient;
 
-  constructor(@Inject('wallet') private client: ClientGrpc) {}
+  constructor(@Inject(WALLET_SERVICE) private client: ClientGrpc) {}
 
   onModuleInit() {
     this.walletService =
