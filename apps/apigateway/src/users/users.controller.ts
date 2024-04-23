@@ -6,9 +6,11 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto, UpdateUserDto, LoginUserDto } from '@app/common';
+import { LocalGuard } from './guards/local.guards';
 
 @Controller('users')
 export class UsersController {
@@ -39,7 +41,8 @@ export class UsersController {
     return this.usersService.remove(id);
   }
 
-  @Post('/login')
+  @UseGuards(LocalGuard)
+  @Post('login')
   login(@Body() loginUserDto: LoginUserDto) {
     return this.usersService.loginUser(loginUserDto);
   }

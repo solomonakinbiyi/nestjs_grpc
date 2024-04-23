@@ -17,14 +17,6 @@ import { Observable } from 'rxjs';
 @UserServiceControllerMethods()
 export class UsersController implements UserServiceController {
   constructor(private readonly usersService: UsersService) {}
-  loginUser(
-    request: LoginUserDto,
-  ):
-    | LoginUserResponse
-    | Observable<LoginUserResponse>
-    | Promise<LoginUserResponse> {
-    return this.usersService.loginUser(request);
-  }
   createUser(request: CreateUserDto): User | Promise<User> | Observable<User> {
     return this.usersService.create(request);
   }
@@ -44,5 +36,13 @@ export class UsersController implements UserServiceController {
     const user = await this.usersService.findOne(request.id);
     await this.usersService.remove(request.id);
     return user;
+  }
+  loginUser(
+    request: LoginUserDto,
+  ):
+    | LoginUserResponse
+    | Observable<LoginUserResponse>
+    | Promise<LoginUserResponse> {
+    return this.usersService.loginUser(request);
   }
 }

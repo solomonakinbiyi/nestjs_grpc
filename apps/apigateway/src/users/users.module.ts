@@ -5,6 +5,8 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AUTH_SERVICE } from './constants';
 import { AUTH_PACKAGE_NAME } from '@app/common';
 import { join } from 'path';
+import { LocalStrategy } from './strategies/local.strategy';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
   imports: [
@@ -18,8 +20,9 @@ import { join } from 'path';
         },
       },
     ]),
+    PassportModule,
   ],
   controllers: [UsersController],
-  providers: [UsersService],
+  providers: [UsersService, LocalStrategy],
 })
 export class UsersModule {}
