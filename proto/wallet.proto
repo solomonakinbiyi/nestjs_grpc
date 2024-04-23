@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package wallet;
+
+service WalletService{
+    rpc CreateWallet (CreateWalletDto) returns (Wallet) {}
+    rpc FindAllWallets (Empty) returns (Wallets) {}
+    rpc FindOneWallet (FindOneWalletDto) returns (Wallet) {}
+    rpc UpdateWallet (UpdateWalletDto) returns (Wallet) {}
+    rpc RemoveWallet (FindOneWalletDto) returns (Wallet) {}
+}
+
+message FindOneWalletDto {
+    string id = 1;
+}
+
+message UpdateWalletDto{
+    string id = 1;
+}
+
+message Empty {};
+
+message Wallets {
+    repeated Wallet wallets = 1;
+}
+
+message CreateWalletDto {
+    string userId = 2;
+    float amount = 3;
+    User user = 4;
+}
+
+message User {
+    string id = 1;
+    string username = 2;
+    string password = 3;
+}
+
+message Wallet {
+    string id = 1;
+    string userId = 2;
+    float amount = 3;
+    User user = 4;
+}
