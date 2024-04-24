@@ -10,7 +10,7 @@ import {
   FindOneUserDto,
   LoginUserDto,
   LoginUserResponse,
-} from '@app/common';
+} from '@app/common/types/auth';
 import { Observable } from 'rxjs';
 
 @Controller()

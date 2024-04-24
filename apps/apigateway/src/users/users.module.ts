@@ -3,7 +3,7 @@ import { UsersService } from './users.service';
 import { UsersController } from './users.controller';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { AUTH_SERVICE } from './constants';
-import { AUTH_PACKAGE_NAME } from '@app/common';
+import { AUTH_PACKAGE_NAME } from '@app/common/types/auth';
 import { join } from 'path';
 import { LocalStrategy } from './strategies/local.strategy';
 import { PassportModule } from '@nestjs/passport';

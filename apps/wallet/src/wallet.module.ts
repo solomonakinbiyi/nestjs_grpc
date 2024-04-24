@@ -3,6 +3,7 @@ import { WalletController } from './wallet.controller';
 import { WalletService } from './wallet.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Wallet } from './entities/Wallet';
+import { User } from 'apps/auth/src/users/entities/User';
 
 @Module({
   imports: [
@@ -13,10 +14,10 @@ import { Wallet } from './entities/Wallet';
       username: 'postgres',
       password: 'authenticate',
       database: 'nestjs_grpc',
-      entities: [Wallet],
+      entities: [Wallet, User],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Wallet]),
+    TypeOrmModule.forFeature([Wallet, User]),
   ],
   controllers: [WalletController],
   providers: [WalletService],

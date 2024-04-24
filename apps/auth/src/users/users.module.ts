@@ -4,6 +4,7 @@ import { UsersController } from './users.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/User';
 import { JwtModule } from '@nestjs/jwt';
+import { Wallet } from 'apps/wallet/src/entities/Wallet';
 
 @Module({
   imports: [
@@ -14,10 +15,10 @@ import { JwtModule } from '@nestjs/jwt';
       username: 'postgres',
       password: 'authenticate',
       database: 'nestjs_grpc',
-      entities: [User],
+      entities: [User, Wallet],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, Wallet]),
     JwtModule.register({
       secret: 'secretKey',
       signOptions: { expiresIn: '1h' },

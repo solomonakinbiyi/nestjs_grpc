@@ -49,10 +49,14 @@
     "wallet": {
       "type": "application",
       "root": "apps/wallet",
-      "entryFile": "main",
-      "sourceRoot": "apps/wallet/src",
+      "entryFile": "src/main",
+      "sourceRoot": "./",
       "compilerOptions": {
-        "tsConfigPath": "apps/wallet/tsconfig.app.json"
+        "tsConfigPath": "apps/wallet/tsconfig.app.json",
+        "assets": [
+          "proto/**.proto"
+        ],
+        "watchAssets": true
       }
     }
   }

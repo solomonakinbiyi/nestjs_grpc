@@ -10,7 +10,11 @@ import {
   Req,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto, UpdateUserDto, LoginUserDto } from '@app/common';
+import {
+  CreateUserDto,
+  UpdateUserDto,
+  LoginUserDto,
+} from '@app/common/types/auth';
 import { LocalGuard } from './guards/local.guards';
 import { Request } from 'express';
 import { JwtAuthGuard } from './guards/jwt.guards';

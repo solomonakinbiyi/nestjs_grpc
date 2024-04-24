@@ -4,7 +4,7 @@ import {
   UpdateUserDto,
   LoginUserDto,
   LoginUserResponse,
-} from '@app/common';
+} from '@app/common/types/auth';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/User';
 import { Repository } from 'typeorm';

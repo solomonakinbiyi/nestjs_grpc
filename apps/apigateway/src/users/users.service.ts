@@ -5,7 +5,7 @@ import {
   UpdateUserDto,
   USER_SERVICE_NAME,
   UserServiceClient,
-} from '@app/common';
+} from '@app/common/types/auth';
 import { ClientGrpc } from '@nestjs/microservices';
 import { AUTH_SERVICE } from './constants';
 
