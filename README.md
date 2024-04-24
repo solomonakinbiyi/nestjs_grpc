@@ -23,8 +23,8 @@
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
 ## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Thank you for taking time to go through this application repository. Here are the instructions on how to run the project. 
+It was built with gRPC, typescript, nodejs, nestjs
 
 ## Installation
 
@@ -35,39 +35,35 @@ $ npm install
 ## Running the app
 
 ```bash
-# development
-$ npm run start
+# apigateway run command
+$ npm run start:dev apigateway
 
-# watch mode
-$ npm run start:dev
+# users/auth service run rommand
+$ npm run start:dev auth
 
-# production mode
-$ npm run start:prod
 ```
 
-## Test
-
+## Endpoints
 ```bash
-# unit tests
-$ npm run test
+# create user
+$ POST http://localhost:3000/users/
+$ body parameters: {username, password}
 
-# e2e tests
-$ npm run test:e2e
+# find all users
+$ GET http://localhost:3000/users/
 
-# test coverage
-$ npm run test:cov
+# find one user
+$ GET http://localhost:3000/users/:id
+
+# update user 
+$ PATCH http://localhost:3000/users/
+$ body parameters: {username, password}
+
+# delete user
+$ DELETE http://localhost:3000/users/:id
+
+# login
+$ POST http://localhost:3000/login
+$ body parameters: {username, password}
+
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
